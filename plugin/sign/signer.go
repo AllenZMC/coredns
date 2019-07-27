@@ -182,7 +182,7 @@ func signAndLog(s *Signer, why error) {
 		return
 	}
 
-	log.Infof("Successfully signed zone %q in %q with key tags %q and serial %d. elapsed %s, next: %s", s.origin, filepath.Join(s.directory, s.signedfile), keyTag(s.keys), z.Apex.SOA.Serial, time.Since(now), s.last.Add(DurationResignDays).Format(timeFmt))
+	log.Infof("Successfully signed zone %q in %q with key tags %q and %d SOA serial, elapsed %s, next: %s", s.origin, filepath.Join(s.directory, s.signedfile), keyTag(s.keys), z.Apex.SOA.Serial, time.Since(now), s.last.Add(DurationResignDays).Format(timeFmt))
 	if err := s.write(z); err != nil {
 		log.Warningf("Failed to move zone file: %s", err)
 	}
